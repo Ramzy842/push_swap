@@ -6,7 +6,7 @@
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 13:46:07 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/10 22:49:02 by rchahban         ###   ########.fr       */
+/*   Updated: 2023/04/17 09:41:48 by rchahban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_args_length(char **av)
 	return (len);
 }
 
-char	*join_args(char *str, char **av, int *x)
+/* char	*join_args(char *str, char **av, int *x)
 {
 	while (av[*x])
 	{
@@ -44,21 +44,31 @@ char	*join_args(char *str, char **av, int *x)
 		(*x)++;
 	}
 	return (str);
+} */
+
+char	*join_args(char *str, char **av, int *length)
+{
+    int x;
+    char *temp;
+
+    x = 1;
+    while (av[x])
+    {
+        temp = ft_strjoin(str, av[x]);
+        str = temp;
+        temp = ft_strjoin(str, " ");
+        str = temp;
+        (*length)++;
+        x++;
+    }
+    return (str);
 }
 
-int	check_values(char **av, int length)
+int	check_values(int *length, char **splitted)
 {
 	int			x;
-	char		**splitted;
-	char		*str;
 	long long	arg;
 
-	x = 1;
-	str = malloc(sizeof(char) * 2);
-	str[0] = ' ';
-	str[1] = '\0';
-	str = join_args(str, av, &x);
-	splitted = ft_split(str, ' ');
 	x = 0;
 	while (splitted[x])
 	{
@@ -68,9 +78,24 @@ int	check_values(char **av, int length)
 			|| !is_number(splitted[x]))
 			display_error();
 		x++;
+		(*length)++;
 	}
-	return (1);
+	return (*length);
 }
+
+
+
+
+/* int	count_args(char **args)
+{
+    int count = 0;
+    while (*args)
+    {
+        count++;
+        args++;
+    }
+    return count;
+} */
 
 void	swap(int *x, int *y)
 {

@@ -6,7 +6,7 @@
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 07:01:17 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/16 05:44:58 by rchahban         ###   ########.fr       */
+/*   Updated: 2023/04/17 09:38:38 by rchahban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int			read_args(char **av);
 int			store_value(char **av, int l);
 int			ft_isdigit(int arg);
 void		display_error(void);
-int			has_dup(long long nb, char **av, int length);
+int			has_dup(long long nb, char **av, int *length);
 int			is_number(char *arg);
 char		*ft_strjoin(char *s1, char *s2);
 int			get_args_length(char **av);
-int			check_values(char **av, int length);
+int			check_values(int *length, char **splitted);
 char		*join_args(char *str, char **av, int *x);
 int			int_length(int *array);
 void		swap(int *x, int *y);
@@ -48,7 +48,7 @@ void		sort_three(t_stack *stacks);
 void		sort_four(t_stack *stacks);
 int			extract_smallest(t_stack *s);
 int			extract_index_smallest(t_stack *s);
-void		sort_more(t_stack *stacks, int *temp_arr, int length);
+void		sort_more(t_stack *stacks, int *temp_arr);
 void		sort_five(t_stack *stacks);
 
 // ops

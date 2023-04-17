@@ -6,12 +6,12 @@
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 05:41:52 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/16 06:08:53 by rchahban         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:51:50 by rchahban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-#include <string.h>
+
 void	sa(t_stack *stacks)
 {
 	swap(&((stacks->stack_a)[stacks->top_a]),
@@ -43,19 +43,6 @@ void	ra(t_stack *stacks)
 	write(1, "ra\n", 3);
 }
 
-/* void ra(t_stack *stacks)
-{
-    int temp;
-
-    if (stacks->top_a > 0)
-    {
-        temp = *(stacks->stack_a + stacks->top_a);
-        memmove(stacks->stack_a + 1, stacks->stack_a, stacks->top_a * sizeof(int));
-        *(stacks->stack_a) = temp;
-    }
-    write(1, "ra\n", 3);
-} */
-
 void	rra(t_stack *stacks)
 {
 	int	temp;
@@ -75,17 +62,3 @@ void	rra(t_stack *stacks)
 	*(stacks->stack_a + stacks->top_a) = temp;
 	write(1, "rra\n", 4);
 }
-
-/* void rra(t_stack *stacks)
-{
-    int temp;
-
-    if (stacks->top_a > 0)
-    {
-        temp = *(stacks->stack_a);
-        memmove(stacks->stack_a, stacks->stack_a + 1, stacks->top_a * sizeof(int));
-        *(stacks->stack_a + stacks->top_a) = temp;
-    }
-    write(1, "rra\n", 4);
-} */
-

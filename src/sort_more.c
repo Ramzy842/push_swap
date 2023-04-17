@@ -6,81 +6,65 @@
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:16:19 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/16 06:06:43 by rchahban         ###   ########.fr       */
+/*   Updated: 2023/04/17 09:19:18 by rchahban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	extract_index_biggest(t_stack *s, int biggest_num)
+int binary_search(int *arr, int value, int start, int end) {
+    if (end >= start) {
+        int mid = start + (end - start) / 2;
+        if (arr[mid] == value) {
+            return mid;
+        }
+        if (arr[mid] > value) {
+            return binary_search(arr, value, start, mid - 1);
+        }
+        return binary_search(arr, value, mid + 1, end);
+    }
+    return -1;
+}
+
+int extract_num_index(int value, int *temp_arr, int top) {
+    int index = binary_search(temp_arr, value, 0, top);
+    return index;
+}
+
+void	extract_biggest(t_stack *s, int *number, int *index)
 {
 	int	x;
-	int	index;
 
 	x = 0;
-	index = 0;
+	*number = *(s->stack_b + s->top_b);
+	*index = s->top_b;
+
 	while (x <= s->top_b)
 	{
-		if (s->stack_b[x] == biggest_num)
+		if (*(number) < *(s->stack_b + x))
 		{
-			index = x;
-			return (index);
+			*(number) = *(s->stack_b + x);
+			*(index) = x;
 		}
 		x++;
 	}
-	return (index);
 }
 
-int	extract_biggest(t_stack *s)
-{
-	int	x;
-	int	biggest_number;
-
-	x = 0;
-	biggest_number = *(s->stack_b + s->top_b);
-	while (x <= s->top_b)
-	{
-		if (biggest_number < *(s->stack_b + x))
-			biggest_number = *(s->stack_b + x);
-		x++;
-	}
-	return (biggest_number);
-}
-
-int	extract_num_index(int value, int *temp_arr, int top)
-{
-	int	x;
-	int	index;
-
-	x = 0;
-	index = 0;
-	while (x <= top)
-	{
-		if (temp_arr[x] == value)
-		{
-			index = x;
-			return (index);
-		}
-		x++;
-	}
-	return (index);
-}
-
-void	sort_more(t_stack *stacks, int *temp_arr, int length)
+void	sort_more(t_stack *stacks, int *temp_arr)
 {
 	int	cte;
 	int	range_movement;
+	int *arr = stacks->stack_a;
+	int top = stacks->top_a;
 	int	x;
 
 	x = 0;
 	range_movement = 0;
-	if (length <= 100)
+	if (top + 1 <= 100)
 		cte = 15;
 	else
 		cte = 35;
 
-	int *arr = stacks->stack_a;
-	int top = stacks->top_a;
 	int extracted_num;
 	while (stacks->top_a != -1)
 	{
@@ -99,14 +83,13 @@ void	sort_more(t_stack *stacks, int *temp_arr, int length)
 		else
 			ra(stacks);
 	}
-
 	int	biggest_num;
 	int	index;
 	int	distance;
+
 	while (stacks->top_b != -1)
 	{
-		biggest_num = extract_biggest(stacks);
-		index = extract_index_biggest(stacks, biggest_num);
+		extract_biggest(stacks, &biggest_num, &index);
 		distance = (stacks->top_b - index);
 		while (stacks->stack_b[stacks->top_b] != biggest_num)
 		{
