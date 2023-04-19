@@ -1,31 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   has_dup.c                                          :+:      :+:    :+:   */
+/*   sort_more_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/09 11:58:38 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/19 01:37:13 by rchahban         ###   ########.fr       */
+/*   Created: 2023/04/19 08:54:24 by rchahban          #+#    #+#             */
+/*   Updated: 2023/04/19 09:15:36 by rchahban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	has_dup(long long nb, char **av, size_t length)
+int	extract_num_index(int value, int *temp_arr, int top)
 {
 	int	x;
-	int	number_of_occurences;
+	int	index;
 
 	x = 0;
-	number_of_occurences = 0;
-	while (x < (int)length)
+	index = 0;
+	while (x <= top)
 	{
-		if (ft_atoi(av[x]) == nb)
-			number_of_occurences++;
+		if (temp_arr[x] == value)
+		{
+			index = x;
+			break ;
+		}
 		x++;
 	}
-	if (number_of_occurences > 1)
-		return (1);
-	return (0);
+	return (index);
+}
+
+void	extract_biggest(t_stack *s, int *number, int *index)
+{
+	int	x;
+
+	x = 0;
+	*number = *(s->stack_b + s->top_b);
+	*index = s->top_b;
+	while (x <= s->top_b)
+	{
+		if (*(number) < *(s->stack_b + x))
+		{
+			*(number) = *(s->stack_b + x);
+			*(index) = x;
+		}
+		x++;
+	}
 }

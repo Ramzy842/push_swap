@@ -6,7 +6,7 @@
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 17:11:17 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/13 23:57:59 by rchahban         ###   ########.fr       */
+/*   Updated: 2023/04/19 06:54:22 by rchahban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	sort_four(t_stack *stacks)
 		else if (distance < index)
 			ra(stacks);
 	}
+	if (is_sorted(stacks->stack_a, stacks->length))
+		return ;
 	pb(stacks);
 	sort_three(stacks);
 	pa(stacks);

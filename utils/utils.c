@@ -6,7 +6,7 @@
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 13:46:07 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/17 09:41:48 by rchahban         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:06:37 by rchahban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,24 @@ int	get_args_length(char **av)
 	return (len);
 }
 
-/* char	*join_args(char *str, char **av, int *x)
-{
-	while (av[*x])
-	{
-		str = ft_strjoin(str, av[*x]);
-		str = ft_strjoin(str, " ");
-		(*x)++;
-	}
-	return (str);
-} */
-
 char	*join_args(char *str, char **av, int *length)
 {
-    int x;
-    char *temp;
+	int		x;
+	char	*temp;
 
-    x = 1;
-    while (av[x])
-    {
-        temp = ft_strjoin(str, av[x]);
-        str = temp;
-        temp = ft_strjoin(str, " ");
-        str = temp;
-        (*length)++;
-        x++;
-    }
-    return (str);
+	x = 1;
+	while (av[x])
+	{
+		temp = ft_strjoin(str, av[x]);
+		free(str);
+		str = temp;
+		temp = ft_strjoin(str, " ");
+		free(str);
+		str = temp;
+		(*length)++;
+		x++;
+	}
+	return (str);
 }
 
 int	check_values(int *length, char **splitted)
@@ -74,7 +65,7 @@ int	check_values(int *length, char **splitted)
 	{
 		arg = ft_atoi(splitted[x]);
 		if ((arg < INT_MIN || arg > INT_MAX)
-			|| has_dup(arg, splitted, length)
+			|| has_dup(arg, splitted, ft_strlen_2d(splitted))
 			|| !is_number(splitted[x]))
 			display_error();
 		x++;
@@ -82,20 +73,6 @@ int	check_values(int *length, char **splitted)
 	}
 	return (*length);
 }
-
-
-
-
-/* int	count_args(char **args)
-{
-    int count = 0;
-    while (*args)
-    {
-        count++;
-        args++;
-    }
-    return count;
-} */
 
 void	swap(int *x, int *y)
 {

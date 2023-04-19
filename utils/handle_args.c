@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   has_dup.c                                          :+:      :+:    :+:   */
+/*   handle_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/09 11:58:38 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/19 01:37:13 by rchahban         ###   ########.fr       */
+/*   Created: 2023/04/19 09:21:04 by rchahban          #+#    #+#             */
+/*   Updated: 2023/04/19 11:06:28 by rchahban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	has_dup(long long nb, char **av, size_t length)
+char	**split_args(char **av)
 {
-	int	x;
-	int	number_of_occurences;
+	int			x;
+	char		**splitted;
+	char		*str;
 
-	x = 0;
-	number_of_occurences = 0;
-	while (x < (int)length)
-	{
-		if (ft_atoi(av[x]) == nb)
-			number_of_occurences++;
-		x++;
-	}
-	if (number_of_occurences > 1)
-		return (1);
-	return (0);
+	x = 1;
+	str = malloc(sizeof(char) * 2);
+	str[0] = ' ';
+	str[1] = '\0';
+	str = join_args(str, av, &x);
+	splitted = ft_split(str, ' ');
+	return (splitted);
+}
+
+int	check_args_validity(int ac, char **av, char **splitted)
+{
+	int	length;
+
+	(void) av;
+	length = 0;
+	if (ac >= 2)
+		length = check_values(&length, splitted);
+	return (length);
 }

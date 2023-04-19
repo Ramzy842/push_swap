@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   has_dup.c                                          :+:      :+:    :+:   */
+/*   filling_stacks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/09 11:58:38 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/19 01:37:13 by rchahban         ###   ########.fr       */
+/*   Created: 2023/04/19 09:23:21 by rchahban          #+#    #+#             */
+/*   Updated: 2023/04/19 09:23:58 by rchahban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	has_dup(long long nb, char **av, size_t length)
+void	fill_stack(t_stack *stacks, char **splitted)
+{
+	int	y;
+
+	y = stacks->length;
+	while (y > 0)
+	{
+		(stacks->top_a)++;
+		*(stacks->stack_a + (stacks->top_a)) = ft_atoi(splitted[y - 1]);
+		y--;
+	}
+}
+
+int	*fill_arr(int *arr, char **splitted, int len)
 {
 	int	x;
-	int	number_of_occurences;
 
 	x = 0;
-	number_of_occurences = 0;
-	while (x < (int)length)
+	arr = malloc(len * sizeof(int));
+	while (x < len)
 	{
-		if (ft_atoi(av[x]) == nb)
-			number_of_occurences++;
+		*(arr + x) = ft_atoi(splitted[x]);
 		x++;
 	}
-	if (number_of_occurences > 1)
-		return (1);
-	return (0);
+	return (arr);
 }

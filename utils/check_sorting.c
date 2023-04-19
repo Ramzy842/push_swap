@@ -1,31 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   has_dup.c                                          :+:      :+:    :+:   */
+/*   check_sorting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/09 11:58:38 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/19 01:37:13 by rchahban         ###   ########.fr       */
+/*   Created: 2023/04/19 09:18:25 by rchahban          #+#    #+#             */
+/*   Updated: 2023/04/19 09:18:55 by rchahban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	has_dup(long long nb, char **av, size_t length)
+int	*sort_temp_array(int *stack, int length)
 {
 	int	x;
-	int	number_of_occurences;
+	int	y;
 
 	x = 0;
-	number_of_occurences = 0;
-	while (x < (int)length)
+	y = 0;
+	while (x < length - 1)
 	{
-		if (ft_atoi(av[x]) == nb)
-			number_of_occurences++;
+		while (y < length - x - 1)
+		{
+			if (stack[y] > stack[y + 1])
+				swap(&stack[y], &stack[y + 1]);
+			y++;
+		}
+		x++;
+		y = 0;
+	}
+	return (stack);
+}
+
+int	is_sorted(int *arr, int length)
+{
+	int	x;
+
+	x = 0;
+	while (x < length - 1)
+	{
+		if (arr[x] < arr[x + 1])
+			return (0);
 		x++;
 	}
-	if (number_of_occurences > 1)
-		return (1);
-	return (0);
+	return (1);
 }
