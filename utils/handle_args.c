@@ -6,7 +6,7 @@
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 09:21:04 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/19 11:06:28 by rchahban         ###   ########.fr       */
+/*   Updated: 2023/04/20 03:56:33 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ char	**split_args(char **av)
 	str[1] = '\0';
 	str = join_args(str, av, &x);
 	splitted = ft_split(str, ' ');
+	free(str);
 	return (splitted);
 }
 

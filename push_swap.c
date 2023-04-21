@@ -6,7 +6,7 @@
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 05:41:57 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/19 11:06:20 by rchahban         ###   ########.fr       */
+/*   Updated: 2023/04/20 03:56:09 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,15 @@ void	handle_more(t_stack *stacks, int *temp_arr, char **splitted)
 		temp_arr = sort_temp_array(temp_arr, stacks->length);
 		sort_more(stacks, temp_arr);
 	}
+	free(temp_arr);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	*stacks;
-	int		x;
 	int		*temp_arr;
 	char	**splitted;
 
-	x = 0;
 	stacks = malloc(sizeof(stacks));
 	temp_arr = NULL;
 	splitted = split_args(argv);
@@ -63,5 +62,8 @@ int	main(int argc, char **argv)
 		handle_less_than_three(stacks);
 	else
 		handle_more(stacks, temp_arr, splitted);
+	free (stacks->stack_a);
+	free (stacks->stack_b);
+	//pause();
 	return (0);
 }
