@@ -6,7 +6,7 @@
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 05:41:57 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/20 03:56:09 by elakhfif         ###   ########.fr       */
+/*   Updated: 2023/04/22 05:31:44 by rchahban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	main(int argc, char **argv)
 		handle_more(stacks, temp_arr, splitted);
 	free (stacks->stack_a);
 	free (stacks->stack_b);
+	//free (stacks);
+	//free_splitted(splitted, stacks->length);
 	//pause();
 	return (0);
 }
