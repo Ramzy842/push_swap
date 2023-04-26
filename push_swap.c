@@ -43,6 +43,7 @@ void	handle_more(t_stack *stacks, int *temp_arr, char **splitted)
 		sort_more(stacks, temp_arr);
 	}
 	free(temp_arr);
+	free(stacks->stack_b);
 }
 
 int	main(int argc, char **argv)
@@ -62,10 +63,6 @@ int	main(int argc, char **argv)
 		handle_less_than_three(stacks);
 	else
 		handle_more(stacks, temp_arr, splitted);
-	free (stacks->stack_a);
-	free (stacks->stack_b);
-	//free (stacks);
-	//free_splitted(splitted, stacks->length);
-	//pause();
+	free(stacks);
 	return (0);
 }
