@@ -6,11 +6,12 @@
 /*   By: rchahban <rchahban@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 05:41:57 by rchahban          #+#    #+#             */
-/*   Updated: 2023/04/22 05:31:44 by rchahban         ###   ########.fr       */
+/*   Updated: 2023/05/10 23:02:40 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
+#include <stdio.h>
 
 void	initialize_stacks(t_stack *stacks, int argc,
 	char **argv, char **splitted)
@@ -23,8 +24,13 @@ void	initialize_stacks(t_stack *stacks, int argc,
 
 void	handle_less_than_three(t_stack *stacks)
 {
-	if (stacks->length == 2)
-		sa(stacks);
+	if (stacks->length <= 1)
+		return ;
+	else if (stacks->length == 2)
+	{
+		if (stacks->stack_a[0] > stacks->stack_a[1])
+			sa(stacks);
+	}
 	else if (stacks->length == 3)
 		sort_three(stacks);
 }
@@ -43,16 +49,17 @@ void	handle_more(t_stack *stacks, int *temp_arr, char **splitted)
 		sort_more(stacks, temp_arr);
 	}
 	free(temp_arr);
-	free(stacks->stack_b);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	*stacks;
+	//int		x;
 	int		*temp_arr;
 	char	**splitted;
 
-	stacks = malloc(sizeof(stacks));
+	//x = 0;
+	stacks = malloc(sizeof(t_stack));
 	temp_arr = NULL;
 	splitted = split_args(argv);
 	initialize_stacks(stacks, argc, argv, splitted);
@@ -63,6 +70,7 @@ int	main(int argc, char **argv)
 		handle_less_than_three(stacks);
 	else
 		handle_more(stacks, temp_arr, splitted);
-	free(stacks);
+	free (stacks->stack_a);
+	free (stacks->stack_b);
 	return (0);
 }

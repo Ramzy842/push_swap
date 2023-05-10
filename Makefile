@@ -1,5 +1,5 @@
 #Define the compiler
-CC = gcc
+CC = cc
 
 # Define the flags to pass to the compiler
 CFLAGS = -Wall -Wextra -Werror
